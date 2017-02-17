@@ -2,7 +2,6 @@ package org.pce.core
 /**
  * Node节点
  * 需要实现类实现handle方法
- * Created by MiaoJia(miaojia@kingsoft.com) on 2017/1/18.
  */
 
 abstract class Node {

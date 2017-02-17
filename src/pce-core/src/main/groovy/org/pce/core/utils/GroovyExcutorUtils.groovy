@@ -2,9 +2,6 @@ package org.pce.core.utils
 
 import groovy.util.logging.Log4j2
 
-/**
- * Created by Administrator on 2017/1/23.
- */
 @Log4j2
 class GroovyExcutorUtils {
 

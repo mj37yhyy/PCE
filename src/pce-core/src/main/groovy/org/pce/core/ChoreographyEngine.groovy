@@ -1,7 +1,6 @@
 package org.pce.core
 /**
  * 流程编排引擎
- * Created by MiaoJia(miaojia@kingsoft.com) on 2017/1/18.
  */
 class ChoreographyEngine {
 

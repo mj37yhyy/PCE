@@ -5,7 +5,6 @@ import org.pce.core.utils.GroovyExcutorUtils
 
 /**
  * 这是有向线的类
- * Created by miaojia on 2017/2/8.
  */
 @Log4j2
 class Connect {
