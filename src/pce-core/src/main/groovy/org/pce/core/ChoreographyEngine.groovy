@@ -8,7 +8,7 @@ class ChoreographyEngine {
      * 初始化配置
      * @param xml xml内容
      */
-    def init(pXml, pGroovyFilesPath) {
+    ChoreographyEngine init(pXml, pGroovyFilesPath) {
 
         //初始化groovy文件
         def groovyFilesPath
