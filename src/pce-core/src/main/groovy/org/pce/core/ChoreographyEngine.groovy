@@ -75,9 +75,9 @@ class ChoreographyEngine {
             String connectForm = $connect.attributes()["from"]
             String connectTo = $connect.attributes()["to"]
             String connectExpression = "true"
-            $connect.properties.each { $property->
+            $connect.properties.each { $property ->
                 String name = $property.attributes()["name"]
-                if(name == "expression")
+                if (name == "expression")
                     connectExpression = $property.text().trim()
             }
 
@@ -126,9 +126,13 @@ class ChoreographyEngine {
     /**
      * 启动
      */
-    void start() {
+    void start(Map globalMemory) {
+        if (globalMemory == null)
+            globalMemory = new HashMap()
+        globalMemory.put("finishHandler", new ArrayList<FinishHandler>())
+
         starters.each { starter ->
-            starter.handle(["finishHandler": new ArrayList<FinishHandler>()])
+            starter.handle(globalMemory)
         }
     }
 
