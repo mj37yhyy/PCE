@@ -97,7 +97,7 @@ class ChoreographyEngine {
      * @param dir
      * @return
      */
-    private readGroovyFiles(File dir) {
+    void readGroovyFiles(File dir) {
         GroovyClassLoader loader = new GroovyClassLoader()
         dir.eachFileRecurse {
             if (it.isFile()) {
@@ -120,7 +120,10 @@ class ChoreographyEngine {
                 }
             }
         }
-        println nodeClasses
+    }
+
+    void refreshGroovyFiles(){
+        nodeClasses.clear()
     }
 
     /**
