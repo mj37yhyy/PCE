@@ -8,7 +8,7 @@
             dataSource: function () {
                 return [];
             },
-            height : $(window).height() + "px"
+            height: $(window).height() + "px"
         },
         _currentConnect: null,
         _create: function () {
@@ -52,7 +52,7 @@
 
             //左菜单
             var tree = {};//树形结构
-            $.each(args.dataSource(), function (k, v) {
+            $.each(that._clone(args.dataSource()), function (k, v) {
                 var group = v.group;
 
                 //将当前数据加入对应的分组下
@@ -72,7 +72,7 @@
                 $.each(v, function (i, n) {
                     $('<div class="pce-view-leaf">' + n.value.html + '</div>')
                         .click(function () {
-                            n.value.type = k;
+                            n.value.type = n.name;
                             that._addNode(n.value);
                         }).appendTo(root);
                 });
@@ -203,7 +203,7 @@
 
                     info.connection.setParameter("expression", "true");
 
-                    info.connection.overlays=[
+                    info.connection.overlays = [
                         ["Arrow", {
                             location: 1,
                             id: "arrow",
@@ -278,7 +278,7 @@
             document.oncontextmenu = function () {
                 return false;
             };
-            if(event.button == 2){
+            if (event.button == 2) {
                 var pceContextMenu = $("#pceContextmenu", el);
                 //位置+清空
                 pceContextMenu
@@ -331,11 +331,12 @@
          * @private
          */
         _batchConnect: function (p) {
+            var that = this;
             if (typeof (p) != "undefined" && p != null && p.length > 0) {
-                this._instance.batch(function () {
+                that._instance.batch(function () {
                     $.each(p, function (i, n) {
                         //连接
-                        _instance.connect({
+                        that._instance.connect({
                             source: n.source,
                             target: n.target,
                             parameters: n.parameters,
@@ -380,6 +381,19 @@
                 y: 0,
                 properties: []
             }, _params);
+
+            //如果params.properties为空，则将view中的名字进行插入，否则会造成没有参数
+            if (params.properties.length == 0) {
+                var nodeConfig = $.grep(that._clone(args.dataSource()), function (n, i) {
+                    return (n.name == params.type)
+                });
+                $.each(nodeConfig[0].config.view, function (i, n) {
+                    params.properties.push({
+                        name: n.name,
+                        value: ""
+                    });
+                });
+            }
 
             var node = document.createElement("div");
             node.className = "w";
@@ -444,7 +458,7 @@
                 //得到保存的参数
                 var nodeParams = self.data("params");
                 if (typeof(nodeParams) == "undefined") nodeParams = {};
-                var nodeConfig = $.grep(args.dataSource(), function (n, i) {
+                var nodeConfig = $.grep(that._clone(args.dataSource()), function (n, i) {
                     return (n.name == nodeParams.type)
                 });
                 var view = nodeConfig[0].config.view;
@@ -534,9 +548,10 @@
                     var p = {};
                     var nType = $(n).attr("type");
 
-                    var nodeConfig = $.grep(args.dataSource(), function (n, i) {
+                    var nodeConfig = $.grep(that._clone(args.dataSource()), function (n, i) {
                         return (n.name == nType)
                     });
+
                     p = nodeConfig[0].config.node;//得到该类型的参数
                     p.id = $(n).attr("id");
 
@@ -591,7 +606,36 @@
             }
 
             addConnects();//添加连接
-
+        },
+        /**
+         * 克隆
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        _clone: function (obj) {
+            var that = this;
+            var o;
+            if (typeof obj == "object") {
+                if (obj === null) {
+                    o = null;
+                } else {
+                    if (obj instanceof Array) {
+                        o = [];
+                        for (var i = 0, len = obj.length; i < len; i++) {
+                            o.push(that._clone(obj[i]));
+                        }
+                    } else {
+                        o = {};
+                        for (var k in obj) {
+                            o[k] = that._clone(obj[k]);
+                        }
+                    }
+                }
+            } else {
+                o = obj;
+            }
+            return o;
         },
         /**
          * 清理画布
@@ -599,9 +643,10 @@
          */
         cleanCanvas: function () {
             var el = this.element;
-            this._instance.detachEveryConnection();//断开所有连接
+            var that = this;
+            that._instance.detachEveryConnection();//断开所有连接
             $(".pce-canvas .w", el).each(function (i, n) {
-                _instance.remove($(n).attr("id")); //删除所有节点
+                that._instance.remove($(n).attr("id")); //删除所有节点
             });
         },
         /**
