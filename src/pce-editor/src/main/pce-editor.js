@@ -7,7 +7,8 @@
         options: {
             dataSource: function () {
                 return [];
-            }
+            },
+            height : $(window).height() + "px"
         },
         _currentConnect: null,
         _create: function () {
@@ -140,7 +141,7 @@
             //设置画布的高度
             function setCanvasHeight() {
                 $(".pce-canvas", el).css({
-                    "height": $(window).height() + "px"
+                    "height": args.height
                 });
             }
 
