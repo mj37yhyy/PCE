@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../main/resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../main/resources/css/jsPlumbToolkit-defaults.css"/>
+    <link rel="stylesheet" href="../main/resources/css/pce-editor.css"/>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
+
+    <script type="text/javascript" src="../main/resources/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../main/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../main/resources/js/jquery-ui-widget.js"></script>
+    <script type="text/javascript" src="../main/resources/js/jsplumb.min.js"></script>
+    <script type="text/javascript" src="../main/pce-editor.js"></script>
+
+    <script type="text/javascript">
+        var data = [
+            {
+                name: "test1",
+                group: "test1",
+                config: {
+                    node: {
+                        html: "<i class=\"fa fa-edit\">test1</i>",
+                        dd: true,
+                        isSource: true,
+                        isTarget: true
+                    },
+                    view: [
+                        {
+                            name: "script",
+                            label: "script",
+                            tag: "input"
+                        }
+                    ]
+                }
+            },
+            {
+                name: "test2",
+                group: "test2",
+                config: {
+                    node: {
+                        html: "<i class=\"fa fa-edit\">test2</i>",
+                        dd: true,
+                        isSource: true,
+                        isTarget: true
+                    },
+                    view: [
+                        {
+                            name: "script",
+                            label: "script",
+                            tag: "textarea"
+                        }
+                    ]
+                }
+            }
+        ];
+
+        $(function () {
+            $("#canvas").pce({
+                dataSource: function () {
+                    return data;
+                }
+            });
+            $("button").click(function () {
+
+                var xml = $("#canvas").pce("getXml", {});
+                console.log(xml.get(0).outerHTML)
+            });
+        });
+
+        //$("#canvas").pce("cleanCanvas");
+
+    </script>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="canvas"></div>
+</div>
+<button>sss</button>
+</body>
+</html>

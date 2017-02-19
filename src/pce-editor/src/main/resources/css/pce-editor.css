@@ -1,0 +1,186 @@
+
+.pce-view-tree:not(.pce-view-leaf):hover{
+    color: #f0ad4e;
+    cursor: pointer;
+}
+
+
+.pce-tree {
+    border-bottom: 1px solid #e8e8e8;
+    background: #f8f8f8;
+    padding-left: 10px;
+    overflow: auto;
+}
+
+.pce-tree .pce-view-tree > div{
+    padding-left: 10px;
+}
+
+.pce-tree .pce-view-leaf {
+    padding: 2px 0 2px 5px;
+}
+
+.pce-tree .pce-view-leaf:hover {
+    background: #31b0d5;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.pce-body {
+    border: solid #e8e8e8;
+    border-width: 0 0 1px 1px;
+    padding: 0;
+}
+
+#pceContextmenu {
+    width: 180px;
+    background-color: #f2f2f2;
+    position: absolute;
+    border: 1px solid #BFBFBF;
+    box-shadow: 2px 2px 3px #aaaaaa;
+    z-index: 100000;
+}
+
+#pceContextmenu > div{
+    padding: 2px 5px;
+}
+
+#pceContextmenu > div:hover{
+    padding: 2px 5px;
+    background: #31b0d5;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* --- page structure --------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+
+body {
+    background-color: #FFF;
+    color: #434343;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    height: 100%;
+    padding: 0;
+}
+
+.pce-canvas {
+    margin-left: 160px;
+    border: 1px solid #CCC;
+    background-color: white;
+}
+
+.canvas-wide {
+    margin-left: 0;
+}
+
+.miniview {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+}
+
+.w {
+    padding: 16px;
+    position: absolute;
+    z-index: 4;
+    border: 1px solid #2e6f9a;
+    box-shadow: 2px 2px 19px #e0e0e0;
+    -o-box-shadow: 2px 2px 19px #e0e0e0;
+    -webkit-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-box-shadow: 2px 2px 19px #e0e0e0;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    opacity: 0.8;
+    cursor: move;
+    background-color: white;
+    font-size: 11px;
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.w:hover {
+    background-color: #5c96bc;
+    color: white;
+
+}
+
+.aLabel {
+    -webkit-transition: background-color 0.25s ease-in;
+    -moz-transition: background-color 0.25s ease-in;
+    transition: background-color 0.25s ease-in;
+}
+
+.aLabel.jtk-hover, .jtk-source-hover, .jtk-target-hover {
+    background-color: #1e8151;
+    color: white;
+}
+
+.aLabel {
+    background-color: white;
+    opacity: 0.8;
+    padding: 0.3em;
+    border-radius: 0.5em;
+    border: 1px solid #346789;
+    cursor: pointer;
+}
+
+.ep {
+    position: absolute;
+    bottom: 37%;
+    right: 5px;
+    width: 1em;
+    height: 1em;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 0 0 2px black;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
+}
+
+.ep:hover {
+    box-shadow: 0 0 6px black;
+}
+
+.pce-canvas .jtk-endpoint {
+    z-index: 3;
+}
+
+#opened {
+    left: 10em;
+    top: 5em;
+}
+
+#phone1 {
+    left: 35em;
+    top: 12em;
+    width: 7em;
+}
+
+#inperson {
+    left: 12em;
+    top: 23em;
+}
+
+#phone2 {
+    left: 28em;
+    top: 24em;
+}
+
+#rejected {
+    left: 10em;
+    top: 35em;
+}
+
+.dragHover {
+    border: 2px solid orange;
+}
+
+path, .jtk-endpoint {
+    cursor: pointer;
+}
