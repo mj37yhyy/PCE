@@ -382,18 +382,21 @@
                 properties: []
             }, _params);
 
-            //如果params.properties为空，则将view中的名字进行插入，否则会造成没有参数
-            if (params.properties.length == 0) {
-                var nodeConfig = $.grep(that._clone(args.dataSource()), function (n, i) {
-                    return (n.name == params.type)
+            //如果有遗失的属性，则加上
+            var nodeConfig = $.grep(that._clone(args.dataSource()), function (n, i) {
+                return (n.name == params.type)
+            });
+            $.each(nodeConfig[0].config.view, function (i, n) {
+                var lostProperty = $.grep(params.properties, function (m, j) {
+                    return (m.name == n.name)
                 });
-                $.each(nodeConfig[0].config.view, function (i, n) {
+                if (lostProperty.length == 0) {
                     params.properties.push({
                         name: n.name,
-                        value: ""
+                        value: (typeof(n.value) == 'undefined' ? "" : n.value)
                     });
-                });
-            }
+                }
+            });
 
             var node = document.createElement("div");
             node.className = "w";
