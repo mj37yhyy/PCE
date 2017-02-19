@@ -134,7 +134,7 @@
             //右键菜单默认隐藏
             $("#pceContextmenu", el).hide();
             //当点击任何地方的时候隐藏右键菜单
-            $("body:not(#pceContextmenu)", el).click(function () {
+            $(":not(#pceContextmenu)", "body").click(function () {
                 $("#pceContextmenu", el).hide();
             });
 
