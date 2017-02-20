@@ -1,0 +1,19 @@
+{
+  "name": "HtmlEmailOutput",
+  "group": "输出",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-envelope-o\"> Html邮件输出</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+      {
+        "name": "templet",
+        "label": "邮件HTML模板",
+        "tag": "textarea"
+      }
+    ]
+  }
+}

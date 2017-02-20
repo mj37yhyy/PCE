@@ -1,0 +1,14 @@
+{
+  "name": "BaseFinisher",
+  "group": "结束",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-circle\"> 结束</i>",
+      "dd": true,
+      "isSource": false,
+      "isTarget": true
+    },
+    "view": [
+    ]
+  }
+}

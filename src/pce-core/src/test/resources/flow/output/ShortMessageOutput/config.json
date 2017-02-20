@@ -1,0 +1,37 @@
+{
+  "name": "ShortMessageOutput",
+  "group": "输出",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-mobile-phone\"> 短信输出</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+      {
+        "name": "path",
+        "label": "path",
+        "tag": "input",
+        "value": "http://10.16.49.3:8901/post_sms.do"
+      },
+      {
+        "name": "Id",
+        "label": "Id",
+        "tag": "input",
+        "value": "kscnet"
+      },
+      {
+        "name": "MD5_td_code",
+        "label": "MD5_td_code",
+        "tag": "input",
+        "value": "c761f38793b7df263900c03f72ad79a7"
+      },
+      {
+        "name": "templet",
+        "label": "邮件HTML模板",
+        "tag": "textarea"
+      }
+    ]
+  }
+}

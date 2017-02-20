@@ -1,0 +1,19 @@
+{
+  "name": "SchedulerStarter",
+  "group": "开始",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-clock-o\"> 定时开始</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": false
+    },
+    "view": [
+      {
+        "name": "cronExpression",
+        "label": "corn表达式",
+        "tag": "input"
+      }
+    ]
+  }
+}

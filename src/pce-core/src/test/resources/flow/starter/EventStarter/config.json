@@ -1,0 +1,14 @@
+{
+  "name": "EventStarter",
+  "group": "开始",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-circle-o\"> 开始</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": false
+    },
+    "view": [
+    ]
+  }
+}

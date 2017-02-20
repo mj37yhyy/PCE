@@ -1,0 +1,32 @@
+<kmc>
+    <flow>
+        <views>
+            <view id="f14f0a81-971e-4961-9a3f-7ecf8278c771" left="103.0000047529297" top="181.0000047529297"></view>
+            <view id="0b1e71ca-3bb0-474b-b6b2-6f767e5bec0d" left="295.0000047529297" top="111.0000047529297"></view>
+            <view id="56b0bbcd-5253-4671-a387-5f1623e49404" left="541.0000352705079" top="94.0000047529297"></view>
+        </views>
+        <connects>
+            <connect id="con_3" name="" from="f14f0a81-971e-4961-9a3f-7ecf8278c771"
+                     to="0b1e71ca-3bb0-474b-b6b2-6f767e5bec0d">
+                <properties name="expression"><![CDATA[true]]></properties>
+            </connect>
+            <connect id="con_14" name="" from="0b1e71ca-3bb0-474b-b6b2-6f767e5bec0d"
+                     to="56b0bbcd-5253-4671-a387-5f1623e49404">
+                <properties name="expression"><![CDATA[true]]></properties>
+            </connect>
+        </connects>
+        <nodes>
+            <node id="f14f0a81-971e-4961-9a3f-7ecf8278c771" name=" 定时开始" describe="zdfdfsd" type="SchedulerStarter">
+                <properties name="cronExpression"><![CDATA[0/10 * * * * ? *]]></properties>
+            </node>
+            <node id="0b1e71ca-3bb0-474b-b6b2-6f767e5bec0d" name=" 自定义过滤器dd" describe="sdftgyhkjzsrfr"
+                  type="CustomGroovyFilter">
+                <properties name="script"><![CDATA[true]]></properties>
+            </node>
+            <node id="56b0bbcd-5253-4671-a387-5f1623e49404" name=" 自定义过滤器" describe="AEfseferf"
+                  type="CustomGroovyFilter">
+                <properties name="script"><![CDATA[true]]></properties>
+            </node>
+        </nodes>
+    </flow>
+</kmc>

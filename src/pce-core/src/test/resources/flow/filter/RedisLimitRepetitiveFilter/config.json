@@ -1,0 +1,20 @@
+{
+  "name": "RedisLimitRepetitiveFilter",
+  "group": "过滤器",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-hand-paper-o\"> Redis排重过滤器</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+      {
+        "name": "interval",
+        "label": "间隔时间",
+        "tag": "input",
+        "value": "2"
+      }
+    ]
+  }
+}

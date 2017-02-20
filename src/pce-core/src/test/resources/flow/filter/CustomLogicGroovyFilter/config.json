@@ -1,0 +1,20 @@
+{
+  "name": "CustomLogicGroovyFilter",
+  "group": "过滤器",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-edit\"> 自定义逻辑过滤器</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+      {
+        "name": "script",
+        "label": "script",
+        "tag": "textarea",
+        "value": "true"
+      }
+    ]
+  }
+}

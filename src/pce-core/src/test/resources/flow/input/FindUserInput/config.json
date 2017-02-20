@@ -1,0 +1,14 @@
+{
+  "name": "FindUserInput",
+  "group": "输入",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-user-o\"> 查询用户输入</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+    ]
+  }
+}

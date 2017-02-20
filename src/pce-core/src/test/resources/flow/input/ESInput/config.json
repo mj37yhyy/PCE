@@ -1,0 +1,29 @@
+{
+  "name": "ESInput",
+  "group": "输入",
+  "config": {
+    "node": {
+      "html": "<i class=\"fa fa-binoculars\"> ES输入</i>",
+      "dd": true,
+      "isSource": true,
+      "isTarget": true
+    },
+    "view": [
+      {
+        "name": "url",
+        "label": "URL",
+        "tag": "input"
+      },
+      {
+        "name": "httpMethod",
+        "label": "http方法",
+        "tagHtml": "<select name=\"httpMethod\"><option value=\"get\">get</option><option value=\"post\">post</option></select>"
+      },
+      {
+        "name": "body",
+        "label": "查询表达式",
+        "tag": "textarea"
+      }
+    ]
+  }
+}
