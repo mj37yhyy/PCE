@@ -1,4 +1,7 @@
 package org.pce.core
+
+import org.codehaus.groovy.control.CompilerConfiguration
+
 /**
  * 流程编排引擎
  */
@@ -7,8 +10,10 @@ class ChoreographyEngine {
     /**
      * 初始化配置
      * @param xml xml内容
+     * @param pGroovyFilesPath groovy文件路径
+     * @param pLibsPath lib包路径
      */
-    ChoreographyEngine init(pXml, pGroovyFilesPath) {
+    ChoreographyEngine init(pXml, pGroovyFilesPath, String pLibsPath) {
 
         //初始化groovy文件
         def groovyFilesPath
@@ -18,7 +23,7 @@ class ChoreographyEngine {
             groovyFilesPath = pGroovyFilesPath
         else return null
 
-        this.readGroovyFiles(groovyFilesPath)
+        this.readGroovyFiles(groovyFilesPath, pLibsPath)
 
 
         def xml
@@ -94,11 +99,12 @@ class ChoreographyEngine {
 
     /**
      * 读取groovy文件，并把Node类型的保存下来
-     * @param dir
-     * @return
+     * @param dir groovy文件路径
+     * @param pLibsPath lib文件路径
      */
-    void readGroovyFiles(File dir) {
+    void readGroovyFiles(File dir, String pLibsPath) {
         GroovyClassLoader loader = new GroovyClassLoader()
+        loader.addClasspath(pLibsPath)
         dir.eachFileRecurse {
             if (it.isFile()) {
                 def fileName = it.name
@@ -122,7 +128,7 @@ class ChoreographyEngine {
         }
     }
 
-    void refreshGroovyFiles(){
+    void refreshGroovyFiles() {
         nodeClasses.clear()
     }
 
