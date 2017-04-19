@@ -201,7 +201,9 @@
                 that._instance.bind("connection", function (info) {
                     //info.connection.getOverlay("label").setLabel(info.connection.id);
 
-                    info.connection.setParameter("expression", "true");
+                    var _expression = info.connection.getParameter("expression");
+                    if (_expression === null || _expression === "")
+                        info.connection.setParameter("expression", "true");
 
                     info.connection.overlays = [
                         ["Arrow", {
