@@ -117,10 +117,14 @@ class ChoreographyEngine {
                 def key = names[names.length - 2]//计算出key（目录名称）
 
                 if (fileName.lastIndexOf(".groovy") > -1) {//如果是groovy文件
-                    Class clazz = loader.parseClass(it)
-                    if (Node.class.isAssignableFrom(clazz)) {//如果是Node类的实现
-                        Class<Node> groovyClass = clazz as Class<Node>
-                        nodeClasses.put(key, groovyClass)
+                    try {
+                        Class clazz = loader.parseClass(it.getText("utf-8"))
+                        if (Node.class.isAssignableFrom(clazz)) {//如果是Node类的实现
+                            Class<Node> groovyClass = clazz as Class<Node>
+                            nodeClasses.put(key, groovyClass)
+                        }
+                    } catch (Exception e) {
+                        println e
                     }
                 }
             }
