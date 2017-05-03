@@ -1,7 +1,7 @@
 package org.pce.core
 
 import groovy.util.logging.Log4j2
-import org.pce.core.utils.GroovyExcutorUtils
+import org.pce.core.utils.GroovyExecutorUtils
 
 /**
  * 这是有向线的类
@@ -24,7 +24,7 @@ class Connect {
         if (expression != null && !expression.isEmpty()) {//如果存在表达式，则执行
             log.info("Project id '${globalMemory.get("projectId")}' - Connect '$name''s expression is : '$expression'")
             Map params = ["globalMemory": globalMemory]
-            def isPass = GroovyExcutorUtils.evaluate(expression, params)//执行条件表达式
+            def isPass = GroovyExecutorUtils.evaluate(expression, params)//执行条件表达式
             if (isPass as boolean) {//如果表达式返回true，则执行to的handle方法
                 log.info("Project id '${globalMemory.get("projectId")}' - Connect '$name''s expression is pass!")
                 to.handle(globalMemory)

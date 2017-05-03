@@ -7,7 +7,7 @@ import org.codehaus.groovy.control.CompilerConfiguration
  * Created by Administrator on 2017/1/23.
  */
 @Log4j2
-class GroovyExcutorUtils {
+class GroovyExecutorUtils {
 
 
     /**
