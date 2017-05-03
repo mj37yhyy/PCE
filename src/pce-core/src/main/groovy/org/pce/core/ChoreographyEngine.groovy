@@ -1,7 +1,4 @@
 package org.pce.core
-
-import org.codehaus.groovy.control.CompilerConfiguration
-
 /**
  * 流程编排引擎
  */
@@ -104,7 +101,9 @@ class ChoreographyEngine {
      */
     void readGroovyFiles(File dir, String pLibsPath) {
         GroovyClassLoader loader = new GroovyClassLoader()
-        loader.addClasspath(pLibsPath)
+        new File(pLibsPath).listFiles().each {
+            loader.addClasspath(it.getPath())
+        }
         dir.eachFileRecurse {
             if (it.isFile()) {
                 def fileName = it.name
