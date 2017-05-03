@@ -1,5 +1,5 @@
 group 'org.pce'
-version '0.0.6-SNAPSHOT'
+version '0.0.7-SNAPSHOT'
 def artifactId = "pce-core"
 
 apply plugin: 'groovy'
