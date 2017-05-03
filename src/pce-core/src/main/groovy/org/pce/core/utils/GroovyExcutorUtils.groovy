@@ -9,6 +9,7 @@ import org.codehaus.groovy.control.CompilerConfiguration
 @Log4j2
 class GroovyExcutorUtils {
 
+
     /**
      * 执行脚本
      * @param script 脚本
@@ -19,7 +20,9 @@ class GroovyExcutorUtils {
         Binding binding = new Binding(params)
         GroovyShell shell = new GroovyShell(binding)
         // 执行groovy脚本
-        shell.evaluate(script as String)
+        def result = shell.evaluate(script as String)
+        shell.getClassLoader().clearCache()
+        result
     }
 
     /**
@@ -37,7 +40,9 @@ class GroovyExcutorUtils {
         Binding binding = new Binding(params)
         GroovyShell shell = new GroovyShell(binding, conf)
         // 执行groovy脚本
-        shell.evaluate(script as String)
+        def result = shell.evaluate(script as String)
+        shell.getClassLoader().clearCache()
+        result
     }
 }
 
