@@ -100,40 +100,76 @@ class ChoreographyEngine {
      * @param pLibsPath lib文件路径
      */
     void readGroovyFiles(File dir, String pLibsPath) {
-        GroovyClassLoader loader = new GroovyClassLoader()
+        GroovyClassLoader loader = new GroovyClassLoader(this.getClass().getClassLoader())
         loader.clearCache()
         new File(pLibsPath).eachFileRecurse {
             if (it.isFile())
                 loader.addClasspath(it.getPath())
         }
         dir.eachFileRecurse {
-            if (it.isFile())
+            if (it.isFile() && it.getPath().lastIndexOf(".groovy") > -1)
                 loader.addClasspath(it.getPath())
         }
+        def errorClassList = new ArrayList<File>()
         dir.eachFileRecurse {
             if (it.isFile()) {
                 def fileName = it.name
-                def path = it.getCanonicalPath()
-
-                def names = null
-                if (File.separator == "\\")
-                    names = path.split(File.separator + File.separator)
-                else if (File.separator == "/")
-                    names = path.split(File.separator)
-                def key = names[names.length - 2]//计算出key（目录名称）
 
                 if (fileName.lastIndexOf(".groovy") > -1) {//如果是groovy文件
                     try {
-                        Class clazz = loader.parseClass(it.getText("utf-8"))
+                        Class clazz = loader.parseClass(it)
                         if (Node.class.isAssignableFrom(clazz)) {//如果是Node类的实现
                             Class<Node> groovyClass = clazz as Class<Node>
-                            nodeClasses.put(key, groovyClass)
+                            nodeClasses.put(getKey(it), groovyClass)
                         }
-                    } catch (Exception e) {
-                        println e
+                    } catch (Exception ignored) {
+                        errorClassList << it
                     }
                 }
             }
+        }
+
+        this.loadErrorClasses(errorClassList, loader)//对于加载错误的类，重新加载
+    }
+
+    /**
+     * 计算出key
+     * @param it
+     * @return
+     */
+    private static String getKey(File it) {
+        def path = it.getCanonicalPath()
+
+        def names = null
+        if (File.separator == "\\")
+            names = path.split(File.separator + File.separator)
+        else if (File.separator == "/")
+            names = path.split(File.separator)
+        def key = names[names.length - 2]//计算出key（目录名称）
+        key
+    }
+
+    /**
+     * 对于加载错误的类，重新加载
+     * @param errorClassList
+     */
+    private void loadErrorClasses(List<File> errorClassList, GroovyClassLoader loader) {
+        def newErrorClassList = new ArrayList<File>()
+        errorClassList.each {
+            try {
+                Class clazz = loader.parseClass(it)
+                if (Node.class.isAssignableFrom(clazz)) {//如果是Node类的实现
+                    Class<Node> groovyClass = clazz as Class<Node>
+                    nodeClasses.put(getKey(it), groovyClass)
+                }
+            } catch (Exception ignored) {
+                newErrorClassList << it
+            }
+        }
+        if (!newErrorClassList.isEmpty()) {
+            // 递归
+            // 对于加载错误的类，重新加载
+            this.loadErrorClasses(newErrorClassList, loader)
         }
     }
 
