@@ -101,8 +101,14 @@ class ChoreographyEngine {
      */
     void readGroovyFiles(File dir, String pLibsPath) {
         GroovyClassLoader loader = new GroovyClassLoader()
-        new File(pLibsPath).listFiles().each {
-            loader.addClasspath(it.getPath())
+        loader.clearCache()
+        new File(pLibsPath).eachFileRecurse {
+            if (it.isFile())
+                loader.addClasspath(it.getPath())
+        }
+        dir.eachFileRecurse {
+            if (it.isFile())
+                loader.addClasspath(it.getPath())
         }
         dir.eachFileRecurse {
             if (it.isFile()) {
