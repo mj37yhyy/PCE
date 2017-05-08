@@ -22,6 +22,8 @@ class GroovyExecutorUtils {
         // 执行groovy脚本
         def result = shell.evaluate(script as String)
         shell.getClassLoader().clearCache()
+        shell = null
+        System.gc()
         result
     }
 
@@ -42,6 +44,8 @@ class GroovyExecutorUtils {
         // 执行groovy脚本
         def result = shell.evaluate(script as String)
         shell.getClassLoader().clearCache()
+        shell = null
+        System.gc()
         result
     }
 }

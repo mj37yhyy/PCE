@@ -198,6 +198,7 @@ class ChoreographyEngine {
             it.shutdown()
         }
         nodes.clear()
+        starters.clear()
     }
 
     //用于存放多个starter
