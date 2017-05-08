@@ -1,5 +1,5 @@
 group 'org.pce'
-version '0.0.21-SNAPSHOT'
+version '0.0.23-SNAPSHOT'
 def artifactId = "pce-core"
 
 apply plugin: 'groovy'
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.codehaus.groovy:groovy-all:2.4.11'
     compile 'org.apache.logging.log4j:log4j-core:2.8'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

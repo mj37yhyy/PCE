@@ -1,11 +1,13 @@
 package org.pce.core
 
+import groovy.transform.CompileStatic
 import groovy.util.logging.Log4j2
 import org.pce.core.utils.GroovyExecutorUtils
 
 /**
  * 这是有向线的类
  */
+@CompileStatic
 @Log4j2
 class Connect {
     String id

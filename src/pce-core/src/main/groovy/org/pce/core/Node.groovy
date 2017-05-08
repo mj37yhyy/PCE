@@ -1,9 +1,13 @@
 package org.pce.core
+
+import groovy.transform.CompileStatic
+
 /**
  * Node节点
  * 需要实现类实现handle方法
  */
 
+@CompileStatic
 abstract class Node {
     String id_
     String name_

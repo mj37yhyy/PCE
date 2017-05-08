@@ -2,6 +2,7 @@ package org.pce.core
 /**
  * 流程编排引擎
  */
+//@CompileStatic
 class ChoreographyEngine {
 
     /**
