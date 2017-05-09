@@ -157,6 +157,7 @@ class ChoreographyEngine {
     private void loadErrorClasses(List<File> errorClassList, GroovyClassLoader loader) {
         def newErrorClassList = new ArrayList<File>()
         errorClassList.each {
+            println "load class $it"
             try {
                 Class clazz = loader.parseClass(it)
                 if (Node.class.isAssignableFrom(clazz)) {//如果是Node类的实现
@@ -164,6 +165,7 @@ class ChoreographyEngine {
                     nodeClasses.put(getKey(it), groovyClass)
                 }
             } catch (Exception ignored) {
+                println "load class error! ${ignored.getMessage()}:$ignored"
                 newErrorClassList << it
             }
         }
