@@ -46,23 +46,23 @@ class GroovyExecutorUtils {
     private static Object _evaluate(String script, Map params, CompilerConfiguration conf) {
         Binding binding = new Binding(params)
 
+        def cacheKey = MD5Utils.getMD5(script)
         Object scriptObject = null
         try {
 
             Script shell = null
-            if (scriptCache.containsKey(script)) {
-                shell = (Script) scriptCache.get(script)
+            if (scriptCache.containsKey(cacheKey)) {
+                shell = (Script) scriptCache.get(cacheKey)
             } else {
                 shell = new GroovyShell(this.class.getClass().getClassLoader(), conf).parse(script)
-                scriptCache.put(script, shell)
             }
 
             shell.setBinding(binding)
             scriptObject = (Object) InvokerHelper.createScript(shell.getClass(), binding).run()
 
             // Cache
-            if (!scriptCache.containsKey(script)) {
-                scriptCache.put(script, shell)
+            if (!scriptCache.containsKey(cacheKey)) {
+                scriptCache.put(cacheKey, shell)
             }
         } catch (Throwable t) {
             log.error("groovy script eval error. script: " + script, t)
